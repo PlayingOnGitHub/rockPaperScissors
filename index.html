@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scizzors</title>
+    </head>
+    <body>
+
+        <script>
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
+            }
+
+            let computerPlay = () => {
+                let rockPaperScissors,
+                    randomNumber;
+                randomNumber = getRandomInt(3);
+
+                switch (randomNumber) {
+                    case 0: return "Rock";
+                            break;
+                    case 1: return "Scissors";
+                            break;
+                    case 2: return "Paper";
+                            break;
+                    default: return "Error";
+                            break;
+                }
+            };
+
+            let getPlayerSelection = function() {
+                
+            };
+
+            function playRound( playerSelection, ComputerSelection ) {
+
+            }
+        </script>
+
+    </body>
+</html>

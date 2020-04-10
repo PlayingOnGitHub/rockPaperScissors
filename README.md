@@ -1,0 +1,1 @@
+I will recreate the Rock Paper Scissors game in this project! I'll learn more about randomizing functions, and I'll get to practice conditional statements. Doing this project will also give me a chance to practice loops. I hope to learn more about arrays soon, but I don't think I'll need arrays for this project.
