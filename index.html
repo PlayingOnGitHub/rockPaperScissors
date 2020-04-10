@@ -29,9 +29,30 @@
                 }
             };
 
-            let getPlayerSelection = function() {
-                
-            };
+            function createComputerReadableFormatForExpectedInput( userInput ) {
+                if (typeof userInput == "string" && userInput.trim() != "" ) {
+                    userInput = userInput.toLowerCase();
+                    userInput = userInput.trim();
+                    return userInput;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function getPlayerSelection() {
+                let playerSelection = false;
+                while (playerSelection == false ) {
+                    playerSelection = prompt("Rock, Paper, or Scissors? ");
+                    playerSelection = createComputerReadableFormatForExpectedInput( playerSelection );
+                    if (playerSelection == "rock" || playerSelection == "scissors" || playerSelection == "paper" ) {
+                        return playerSelection;
+                    }
+                    else {
+                        playerSelection = false;
+                    }
+                }
+            }
 
             function playRound( playerSelection, ComputerSelection ) {
 
