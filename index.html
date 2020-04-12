@@ -7,10 +7,11 @@
     <body>
 
         <script>
-
+            /* As shown from Mozilla's documentation */
             function getRandomInt(max) {
                 return Math.floor(Math.random() * Math.floor(max));
             }
+            /* end of function */
 
             let computerPlay = () => {
                 let rockPaperScissors,
@@ -18,13 +19,13 @@
                 randomNumber = getRandomInt(3);
 
                 switch (randomNumber) {
-                    case 0: return "Rock";
+                    case 0: return "rock";
                             break;
-                    case 1: return "Scissors";
+                    case 1: return "scissors";
                             break;
-                    case 2: return "Paper";
+                    case 2: return "paper";
                             break;
-                    default: return "Error";
+                    default: return "error";
                             break;
                 }
             };
@@ -54,9 +55,87 @@
                 }
             }
 
-            function playRound( playerSelection, ComputerSelection ) {
+            function playRound( playerSelection, computerSelection ) {
+                let playerWins;
+                
+                if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" ||
+                    playerSelection == "paper" && computerSelection == "rock") {
+                        
+                        playerWins = true;
+
+                }
+
+                else if ( playerSelection == computerSelection ) {
+                        playerWins = "tie";
+                }
+
+                else {
+                        playerWins = false;
+                }
+
+                return playerWins;
 
             }
+
+            function logRoundsAndPoints( rounds, playerPoints, computerPoints ) {
+                console.log("Round " + (6 - rounds));
+                console.log("Player points: " + playerPoints);
+                console.log("Computer Points: " + computerPoints);
+            }
+
+            function makeMatchPointComment( rounds, playerPoints, computerPoints ) {
+                if ( playerPoints == 2 || computerPoints == 2) {
+                    alert("Match Point!");
+                    console.log("Match Point!");
+                }
+            }
+
+            function game() {
+                let playerPoints = 0;
+                let computerPoints = 0;
+
+                let rounds = 5;
+                let tie;
+
+                while ( rounds > 0 && playerPoints < 3 && computerPoints < 3 ) {
+
+                    makeMatchPointComment( rounds, playerPoints, computerPoints );
+
+                    switch( playRound( getPlayerSelection(), computerPlay() ) ) {
+                        case true: {
+                            ++playerPoints;
+                            alert("You win this round...");
+                            logRoundsAndPoints( rounds, playerPoints, computerPoints );
+
+                            --rounds;
+                            break;
+                        }
+
+                        case "tie": {
+                            alert("Tie?!?!");
+                            break;
+                        }
+
+                        case false: {
+                            ++computerPoints;
+                            alert("You lost this round!");
+                            logRoundsAndPoints( rounds, playerPoints, computerPoints );
+
+                            --rounds;
+                            break;
+                        }
+                    }
+
+                }
+
+                (playerPoints > computerPoints) ? alert("You won the game!") : alert("You lost the game. Try again!");
+                (playerPoints > computerPoints) ? console.log("You win!") : console.log("You lose!");
+
+            }
+
+            /* Let's run it! */
+            game();
+
         </script>
 
     </body>
