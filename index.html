@@ -3,140 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scizzors</title>
+        <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style-page.css">
     </head>
     <body>
-
-        <script>
-            /* As shown from Mozilla's documentation */
-            function getRandomInt(max) {
-                return Math.floor(Math.random() * Math.floor(max));
-            }
-            /* end of function */
-
-            let computerPlay = () => {
-                let rockPaperScissors,
-                    randomNumber;
-                randomNumber = getRandomInt(3);
-
-                switch (randomNumber) {
-                    case 0: return "rock";
-                            break;
-                    case 1: return "scissors";
-                            break;
-                    case 2: return "paper";
-                            break;
-                    default: return "error";
-                            break;
-                }
-            };
-
-            function createComputerReadableFormatForExpectedInput( userInput ) {
-                if (typeof userInput == "string" && userInput.trim() != "" ) {
-                    userInput = userInput.toLowerCase();
-                    userInput = userInput.trim();
-                    return userInput;
-                }
-                else {
-                    return false;
-                }
-            }
-
-            function getPlayerSelection() {
-                let playerSelection = false;
-                while (playerSelection == false ) {
-                    playerSelection = prompt("Rock, Paper, or Scissors? ");
-                    playerSelection = createComputerReadableFormatForExpectedInput( playerSelection );
-                    if (playerSelection == "rock" || playerSelection == "scissors" || playerSelection == "paper" ) {
-                        return playerSelection;
-                    }
-                    else {
-                        playerSelection = false;
-                    }
-                }
-            }
-
-            function playRound( playerSelection, computerSelection ) {
-                let playerWins;
-                
-                if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" ||
-                    playerSelection == "paper" && computerSelection == "rock") {
-                        
-                        playerWins = true;
-
-                }
-
-                else if ( playerSelection == computerSelection ) {
-                        playerWins = "tie";
-                }
-
-                else {
-                        playerWins = false;
-                }
-
-                return playerWins;
-
-            }
-
-            function logRoundsAndPoints( rounds, playerPoints, computerPoints ) {
-                console.log("Round " + (6 - rounds));
-                console.log("Player points: " + playerPoints);
-                console.log("Computer Points: " + computerPoints);
-            }
-
-            function makeMatchPointComment( rounds, playerPoints, computerPoints ) {
-                if ( playerPoints == 2 || computerPoints == 2) {
-                    alert("Match Point!");
-                    console.log("Match Point!");
-                }
-            }
-
-            function game() {
-                let playerPoints = 0;
-                let computerPoints = 0;
-
-                let rounds = 5;
-                let tie;
-
-                while ( rounds > 0 && playerPoints < 3 && computerPoints < 3 ) {
-
-                    makeMatchPointComment( rounds, playerPoints, computerPoints );
-
-                    switch( playRound( getPlayerSelection(), computerPlay() ) ) {
-                        case true: {
-                            ++playerPoints;
-                            alert("You win this round...");
-                            logRoundsAndPoints( rounds, playerPoints, computerPoints );
-
-                            --rounds;
-                            break;
-                        }
-
-                        case "tie": {
-                            alert("Tie?!?!");
-                            break;
-                        }
-
-                        case false: {
-                            ++computerPoints;
-                            alert("You lost this round!");
-                            logRoundsAndPoints( rounds, playerPoints, computerPoints );
-
-                            --rounds;
-                            break;
-                        }
-                    }
-
-                }
-
-                (playerPoints > computerPoints) ? alert("You won the game!") : alert("You lost the game. Try again!");
-                (playerPoints > computerPoints) ? console.log("You win!") : console.log("You lose!");
-
-            }
-
-            /* Let's run it! */
-            game();
-
-        </script>
-
+        <div class="banner-container">
+            <img src="banner.png" alt="Rock Paper Scizzors!" class="responsive-image">
+        </div>
+        <main>
+            <div class="image-container">
+                <img src="" alt="Rock!">
+                <img src="" alt="Paper!">
+                <img src="" alt="Scissors!">
+                <img src="" alt="Shoe?">
+            </div>
+        </main>
+        <footer>
+            <img src="trippy-space-kitty.jpg" alt="Picture of a space kitty looking up at the game" class="trippy-kitty">
+        </footer>
+        <!-- <script type="text/javascript" src="rock-paper-scissors.js"></script> -->
     </body>
 </html>
