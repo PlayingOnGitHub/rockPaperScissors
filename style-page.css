@@ -12,11 +12,67 @@ main {
     justify-content: center;
 }
 
-.background-image {
-    width: 1200px;
+.parent-background {
+    width: 1330px;
     height: 600px;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
-area {
-    
+.relative-1 {
+    top: 0;
+    left: 0;
+    margin-left: 130px;
+    z-index: 1;
 }
+
+.relative-2 {
+    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
+    top: 43px;
+    left: 184px;
+    z-index: 2;
+    background-color: white;
+    width: 712px;
+    height: 257px;
+}
+
+.relative-3 {
+    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
+    top: 43px;
+    left: 184px;
+    z-index: 2;
+    /* background-image: url("rock.png"); */
+    width: 237px;
+    height: 257px;
+
+}
+
+.relative-4 {
+    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
+    top: 43px;
+    left: 421px;
+    z-index: 2;
+    /* background-image: url("paper.png"); */
+    width: 237px;
+    height: 257px;
+}
+
+.relative-5 {
+    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
+    top: 43px;
+    left: 658px;
+    z-index: 2;
+    /* background-image: url("scissors.png"); */
+    width: 237px;
+    height: 257px;
+}
+
+.size-image {
+    width: 237px;
+    height: 257px;
+}
+
+/* area {
+
+} */
