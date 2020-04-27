@@ -1,37 +1,22 @@
 body {
-    background-color: black;
-}
-
-.banner-container {
-    display: block;
-    margin: 0 auto;
-    height: 171px;
-    width: 1471px;
-}
-
-.responsive-image {
-    max-width: 100%;
-    height: auto;
+    background-color: grey;
 }
 
 main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    height: 100%;
-    justify-content: center;
+    height: 900px;
+
     align-items: center;
+    justify-content: center;
 }
 
-footer {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 325px;
-    bottom: 0;
+.background-image {
+    width: 1200px;
+    height: 600px;
 }
 
-.trippy-kitty {
-    width: 100%;
-    height: 324px;
+area {
+    
 }
