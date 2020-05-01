@@ -12,6 +12,61 @@ main {
     justify-content: center;
 }
 
+/* List animations first */
+
+@keyframes move-computer-selection-across-screen {
+
+}
+
+#move-computer-selection {
+    animation-name: move-computer-selection-across-screen; /* add another animation to it too??? */
+    animation-duration: 4s;
+    animation-fill-mode: fowards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes move-player-selection-across-screen {
+
+}
+
+#move-player-selection {
+    animation-name: move-player-selection-across-screen; /* add another animation to it too??? */
+    animation-duration: 4s;
+    animation-fill-mode: fowards;
+    animation-timing-function: ease-out;
+}
+
+.animation-background {
+    /* this is still inside the main block for flexible items */
+    width: 80%;
+    height: 600px;
+    background-color: orange;
+    opacity: 0.30;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.player-selection-div-properties {
+    margin-left: 130px;
+    z-index: 2;
+    background-color: green;
+    opacity: 0.50;
+    /* may want to adjust height depending on which value I ultimately decide on for the image height. */
+    width: 400px;
+    height: 600px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* start of beginning content */
+
 .parent-background {
     width: 1330px;
     height: 600px;
@@ -20,14 +75,14 @@ main {
     left: 0;
 }
 
-.relative-1 {
+.image-div-placement {
     top: 0;
     left: 0;
     margin-left: 130px;
     z-index: 1;
 }
 
-/*.relative-2 {
+/*.full-tv-width {
     position: absolute;
     top: 43px;
     left: 184px;
@@ -37,7 +92,7 @@ main {
     height: 257px;
 }*/
 
-.relative-2 {
+.rock {
     position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
     top: 43px;
     left: 184px;
@@ -49,7 +104,7 @@ main {
 
 }
 
-.relative-3 {
+.paper {
     position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
     top: 43px;
     left: 421px;
@@ -60,7 +115,7 @@ main {
     height: 257px;
 }
 
-.relative-4 {
+.scissors {
     position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
     top: 43px;
     left: 658px;
