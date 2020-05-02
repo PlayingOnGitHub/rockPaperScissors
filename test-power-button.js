@@ -71,7 +71,13 @@ function createAnimationBackgroundAndAnimationElements(playerSelectedClass, comp
     removeEventListeners(); /* cleans up so zIndex will work and so the image will stay up there */
     let animationBackground = document.querySelector(".none");
         animationBackground.id = "add-animation-background";
-    let backgroundImage = document.querySelector(".comfortable-background-image");
+    let computerSelectedItem = document.createElement("img");
+    let parentBackground = document.querySelector(".parent-background");
+        parentBackground.appendChild(computerSelectedItem);
+        computerSelectedItem.id = "move-computer-selection";
+    let computerSelectedItemSrc = computerSelectedClass + "-with-border.png";
+        computerSelectedItem.src = computerSelectedItemSrc;
+    /*let backgroundImage = document.querySelector(".comfortable-background-image");
         backgroundImage.id = "fade-element";
     if (playerSelectedClass != "rock") {
         let rock = document.querySelector(".rock");
@@ -86,7 +92,7 @@ function createAnimationBackgroundAndAnimationElements(playerSelectedClass, comp
     if (playerSelectedClass != "scissors") {
         let scissors = document.querySelector(".scissors");
             scissors.id = "fade-element";
-    }
+    }*/
 
     let playerSelection = document.querySelector("."+playerSelectedClass);
         playerSelection.style.zIndex = "11";
