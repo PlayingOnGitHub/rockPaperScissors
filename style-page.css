@@ -1,17 +1,3 @@
-body {
-    background-color: grey;
-}
-
-main {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 900px;
-
-    align-items: center;
-    justify-content: center;
-}
-
 /* List animations first */
 
 @keyframes move-computer-selection-across-screen {
@@ -21,65 +7,187 @@ main {
 #move-computer-selection {
     animation-name: move-computer-selection-across-screen; /* add another animation to it too??? */
     animation-duration: 4s;
-    animation-fill-mode: fowards;
+    animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
 
-@keyframes move-player-selection-across-screen {
+@keyframes move-rock-across-screen {
+    
+    100% {
+        top: 150px;
+        left: 300px;
+    }
 
 }
 
-#move-player-selection {
-    animation-name: move-player-selection-across-screen; /* add another animation to it too??? */
-    animation-duration: 4s;
-    animation-fill-mode: fowards;
+#move-rock {
+    /* this is where my image will end up? */
+    z-index: 11;
+    animation-name: move-rock-across-screen; /* add another animation to it too??? */
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
 
-.animation-background {
-    /* this is still inside the main block for flexible items */
-    width: 80%;
-    height: 600px;
-    background-color: orange;
-    opacity: 0.30;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
+@keyframes place-animation-background-over-parent-background {
+    0% {
+        opacity: 0.0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    20% {
+        opacity: 0.2;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    40% {
+        opacity: 0.4
+    }
+    50% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 0.6;
+    }
+    70% {
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
 
-.player-selection-div-properties {
-    margin-left: 130px;
-    z-index: 2;
-    background-color: green;
-    opacity: 0.50;
-    /* may want to adjust height depending on which value I ultimately decide on for the image height. */
-    width: 400px;
-    height: 600px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+#add-animation-background {
+    /* position is absolute but also relative to parent background. Same for the classes: comfortable-background, rock, paper, scissors. */
+    margin-left: 60px;
+    position:absolute;
+    width:1270px;
+    height:650px;
+    background-color:black;
+    z-index:10;
+        
+        animation-name: place-animation-background-over-parent-background; /* add another animation to it too??? */
+        animation-duration: 10s;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear
 }
+
+@keyframes fade-the-element {
+    0% {
+        opacity: 1.0
+    }
+    10% {
+        opacity: 0.9;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    30% {
+        opacity: 0.7;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 0.4;
+    }
+    70% {
+        opacity: 0.3;
+    }
+    80% {
+        opacity: 0.2;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+#fade-element {
+
+    animation-name: fade-the-element; /* add another animation to it too??? */
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.player-selection-image-properties {
+}
+.computer-selection-image-properties {
+}
+
+/****************************************/
 
 /* start of beginning content */
 
-.parent-background {
-    width: 1330px;
-    height: 600px;
-    position: relative;
-    top: 0;
-    left: 0;
+main {
+    /* centers parent background */
+    /* need to center in a block fashion */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.image-div-placement {
-    top: 0;
-    left: 0;
-    margin-left: 130px;
-    z-index: 1;
+.parent-background {
+    /* makes elements inside relative to this */
+    position: relative;
+    margin-left: 60px;
+    min-width:1330px;
+    min-height:700px;
+}
+
+.comfortable-background-image {
+    position:absolute;
+    margin-left: 60px;
+    width:1330px;
+    height:700px;
+}
+
+.rock {
+    position:absolute;
+    top:50px;
+    left:90px;
+
+    cursor: pointer;
+    width: 259px;
+    height: 300px;
+    z-index:2;
+
+}
+
+.paper {
+    position:absolute;
+    top:50px;
+    left:350px;
+
+    cursor: pointer;
+    width: 268px;
+    height: 300px;
+    z-index: 2;
+}
+
+.scissors {
+    position:absolute;
+    top:50px;
+    left:620px;
+
+    cursor: pointer;
+    width: 259px;
+    height: 300px;
+    z-index: 2;
 }
 
 /*.full-tv-width {
@@ -91,46 +199,3 @@ main {
     width: 712px;
     height: 257px;
 }*/
-
-.rock {
-    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
-    top: 43px;
-    left: 184px;
-    z-index: 2;
-    cursor: pointer;
-    /* background-image: url("rock.png"); */
-    width: 237px;
-    height: 257px;
-
-}
-
-.paper {
-    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
-    top: 43px;
-    left: 421px;
-    z-index: 2;
-    cursor: pointer;
-    /* background-image: url("paper.png"); */
-    width: 237px;
-    height: 257px;
-}
-
-.scissors {
-    position: absolute; /* with respect to parent backgrounds position with position: relative! So cool! Note this! */
-    top: 43px;
-    left: 658px;
-    z-index: 2;
-    cursor: pointer;
-    /* background-image: url("scissors.png"); */
-    width: 237px;
-    height: 257px;
-}
-
-.size-image {
-    width: 237px;
-    height: 257px;
-}
-
-/* area {
-
-} */

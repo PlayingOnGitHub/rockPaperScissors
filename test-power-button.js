@@ -40,45 +40,10 @@ function logRoundsAndPoints(playerPoints, computerPoints ) {
 
 }
 
-function endMatch() {
-
-}
-
-function computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip() {
-
-    /* do this after first animation */
-    /* assign an I.D. to the right side element inside the parent div */
-
-
-    
-}
-
-function createAnimationBackgroundAndAnimationElements(playerSelectionId, computerSelectionId) {
-    let main = document.querySelector("main");
-    parentBackground = main.appendChild(document.createElement("div"));
-    parentBackground.className = "animation-background";
-
-    let playerSelectionDiv = parentBackground.appendChild(document.createElement("div"));
-    playerSelectionDiv.className = "player-selection-div-properties";
-    let playerSelection = playerSelectionDiv.appendChild(document.createElement("img"));
-    let playerSelectionSrc = playerSelectionId + "-with-border.png";
-    playerSelection.src = playerSelectionSrc;
-    playerSelection.className = "player-selection-image-properties";
-    playerSelection.id = playerSelectionId;
-
-    let computerSelectionDiv = parentBackground.appendChild(document.createElement("div"));
-    computerSelectionDiv.className = "computer-selection-div-properties";
-    let computerSelection = computerSelectionDiv.appendChild(document.createElement("img"));
-    computerSelectionSrc = computerSelectionId + "-with-border.png";
-    computerSelection.src = computerSelectionSrc;
-    computerSelection.className = "computer-selection-image-properties";
-    computerSelection.id = computerSelectionId;
-}
-
-function cleanUpElements(playerSelectionId) {
-    let rock = document.getElementsByClassName("size-image")[0];
-    let paper = document.getElementsByClassName("size-image")[1];
-    let scissors = document.getElementsByClassName("size-image")[2];
+function removeEventListeners() {
+    let rock = document.querySelector(".rock");
+    let paper = document.querySelector(".paper");
+    let scissors = document.querySelector(".scissors");
 
     rock.removeEventListener("mouseover", scaleImage, true);
     paper.removeEventListener("mouseover", scaleImage, true);
@@ -91,30 +56,62 @@ function cleanUpElements(playerSelectionId) {
     rock.removeEventListener("click", playRound, true);
     paper.removeEventListener("click", playRound, true);
     scissors.removeEventListener("click", playRound, true);
+}
 
-    let parentBackground = document.querySelector(".parent-background");
-    parentBackground.remove();
+function endMatch() {
 
 }
 
-function animateRoundWinner( playerSelectionId, computerSelectionId, winner ) {
+function computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip() {
+    
+}
 
-    cleanUpElements(playerSelectionId);
-    createAnimationBackgroundAndAnimationElements(playerSelectionId, computerSelectionId);
+function createAnimationBackgroundAndAnimationElements(playerSelectedClass, computerSelectedClass) {
+    
+    removeEventListeners(); /* cleans up so zIndex will work and so the image will stay up there */
+    let animationBackground = document.querySelector(".none");
+        animationBackground.id = "add-animation-background";
+    let backgroundImage = document.querySelector(".comfortable-background-image");
+        backgroundImage.id = "fade-element";
+    if (playerSelectedClass != "rock") {
+        let rock = document.querySelector(".rock");
+            rock.id = "fade-element";
+    }
 
-    let playerSelection = document.getElementById(playerSelectionId);
-    let computerSelection = document.getElementById(computerSelectionId);
-    computerSelection.id = "move-computer-selection"; /* performs animation by assigning i.d. to computer selected element */
-    playerSelection.id = "move-player-selection"; /* performs animation by assigning i.d. to player selected element */
+    if (playerSelectedClass != "paper") {
+        let paper = document.querySelector(".paper");
+            paper.id = "fade-element";
+    }
 
-    playerSelection.addEventListener("animationend", computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip, false); /*do this at the end of first animation */
+    if (playerSelectedClass != "scissors") {
+        let scissors = document.querySelector(".scissors");
+            scissors.id = "fade-element";
+    }
+
+    let playerSelection = document.querySelector("."+playerSelectedClass);
+        playerSelection.style.zIndex = "11";
+}
+
+function animateRoundWinner( playerSelectedClassName, computerSelectedClassName, winner ) {
+    
+    createAnimationBackgroundAndAnimationElements(playerSelectedClassName, computerSelectedClassName);
+
+    let playerSelectedItem = document.querySelector("."+playerSelectedClassName);
+        playerSelectedItem.id = "move-rock";
+        
+    /*let playerSelection = document.querySelector("."+playerSelectionClassName);
+    let computerSelection = document.querySelector("."+computerSelectionClassName);
+    computerSelection.id = "move-computer-selection";
+    playerSelection.id = "move-player-selection";
+
+    playerSelection.addEventListener("animationend", computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip, false);*/
     
 
 }
 
 function playRound() {
 
-    let playerSelection = this.id;
+    let playerSelection = this.className
     let computerSelection = computerPlay();
     
     if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" ||
@@ -127,7 +124,6 @@ function playRound() {
     }
 
     else if ( playerSelection == computerSelection ) {
-            /* TIE! */
             animateRoundWinner(playerSelection, computerSelection, "nowinner");
     }
 
@@ -143,13 +139,9 @@ function playRound() {
 
 }
 
-
-
-/************************* NEW CONTENT BELOW ******************************************/
-
-function addBorder( imageId, yesOrNo ) {
-    let image = document.getElementById(imageId);
-    let path = imageId;
+function addBorder( imageClassName, yesOrNo ) {
+    let image = document.querySelector("."+imageClassName);
+    let path = imageClassName;
     if (yesOrNo == "yes" ) {
         path += "-with-border";
     }
@@ -162,24 +154,23 @@ function scaleImage() {
 
     if (this.style.transform == "scale(1.3)" ) {
         this.style.transform = "";
-        this.parentElement.style.zIndex = "2";
-        addBorder(this.id, "no");
+        this.style.zIndex = "2";
+        addBorder(this.className, "no");
         
     }
     else {
         this.style.transform = "scale(1.3)";
-        this.parentElement.style.zIndex = "5";
-        this.style
-        addBorder(this.id, "yes");
+        this.style.zIndex = "5";
+        addBorder(this.className, "yes");
         
     }
 }
 
 function scaleImagesWhenUserHovers() {
 
-    let rock = document.getElementsByClassName("size-image")[0];
-    let paper = document.getElementsByClassName("size-image")[1];
-    let scissors = document.getElementsByClassName("size-image")[2];
+    let rock = document.querySelector(".rock");
+    let paper = document.querySelector(".paper");
+    let scissors = document.querySelector(".scissors");
 
     rock.addEventListener("mouseover", scaleImage, true);
     paper.addEventListener("mouseover", scaleImage, true);
@@ -195,34 +186,34 @@ function scaleImagesWhenUserHovers() {
 
 }
 
-function cleanUpOldContent() {
-    let backgroundImage = document.getElementsByClassName("image-div-placement")[0];
-        backgroundImage.removeAttribute("usemap");
+function cleanUpStartingContent() {
+    let comfortableBackgroundImage = document.querySelector(".comfortable-background-image");
+    comfortableBackgroundImage.removeAttribute("usemap");
+    comfortableBackgroundImage.src = "comfortable-background-image.png";
     let powerButtonMap = document.querySelector("map");
         powerButtonMap.removeChild(powerButtonMap.firstElementChild);
         powerButtonMap.remove();
 }
 
 function createRockPaperScissorsImages() {
-    let backgroundImage = document.querySelector("img");
-        backgroundImage.src = "comfortable-background-image.png";
-    let rockContainer = document.getElementsByClassName("rock")[0];
-    let rock = rockContainer.appendChild(document.createElement("img"));
-        rock.src = "rock.png";
-        rock.className = "size-image";
-        rock.id = "rock";
-    let paperContainer = document.getElementsByClassName("paper")[0];
-    let paper = paperContainer.appendChild(document.createElement("img"));
-        paper.src = "paper.png";
-        paper.className = "size-image";
-        paper.id = "paper";
-    let scissorsContainer = document.getElementsByClassName("scissors")[0];
-    let scissors = scissorsContainer.appendChild(document.createElement("img"));
-        scissors.src = "scissors.png";
-        scissors.className = "size-image";
-        scissors.id = "scissors";
 
-    cleanUpOldContent();
+    cleanUpStartingContent();
+
+    let comfortableBackgroundImage = document.querySelector(".parent-background");
+    let rock = document.createElement("img");
+        comfortableBackgroundImage.appendChild(rock);
+        rock.className = "rock";
+    let paper = document.createElement("img");
+        comfortableBackgroundImage.appendChild(paper);
+        paper.className = "paper";
+    let scissors = document.createElement("img");
+        comfortableBackgroundImage.appendChild(scissors);
+        scissors.className = "scissors";
+
+    rock.src = "rock.png";
+    paper.src = "paper.png";
+    scissors.src = "scissors.png";
+
     scaleImagesWhenUserHovers();
 
 }
@@ -230,7 +221,6 @@ function createRockPaperScissorsImages() {
 function createMatch() {
     let powerButton = document.getElementById("power-button");
     powerButton.addEventListener("click", createRockPaperScissorsImages, true);
-    
 }
 
 createMatch();

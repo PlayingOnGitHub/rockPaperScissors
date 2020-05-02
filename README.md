@@ -1,3 +1,4 @@
+
 I will recreate the Rock Paper Scissors game in this project! I'll learn more about randomizing functions, and I'll get to practice conditional statements. Doing this project will also give me a chance to practice loops. I hope to learn more about arrays soon, but I don't think I'll need arrays for this project.
 
 Turns out, I didn't need arrays for this project, but I'll be learning more about arrays soon.
@@ -5,14 +6,13 @@ Turns out, I didn't need arrays for this project, but I'll be learning more abou
 I practiced making loops. I also read about getting random numbers. I found a function on Mozilla's website, which was very helpful. Their function, getRandomInt(max), returns a random integer-number leading up to the value placed inside it's parameters, "max."
 
 I feel confident enough to upload my project, now that I've tested my project multiple times inside my Chrome Browser.
-
 --------------------------------------------------------------------------------------------------------------------------------------
 
 I'm now creating a very lively project. My project includes images with corresponding event listeners added to them.
-
 I've added event listeners that check for hover events. These events will scale my images.
 I've also added event listeners that check for click events. These events run animations and cause the player to make progress in the game.
 --------------------------------------------------------------------------------------------------------------------------------------
+
 I need to clean up the following css classes noted.. and then sweep the file because there are some styles left over from other tests.
 
 class = player-selection-image-properties
@@ -24,3 +24,11 @@ class = animation-background [currently is orange]
 
 id = #move-computer-selection [runs animation]
 id = #move-player-selection [runs animation]
+
+
+----------------------------------------------------------------------------------------------
+I'm really excited to add this code below to my css file. I'll make the code interactive with Javascript. I plan to make the parent background fade to a lighter color and have a new display fade into view in a dark black color. I will keep some opacity for the previous actions. This will create the illusion that the back of the page is still somewhat in focus. The dark black colored backgroundw will then drop away to allow the user to play another round. I plan to snag the player selected image and placing that image into the background on the left side. Computer selected choice will fit flexibly inside the div to the right side. Both images will be separated by some margin or padding.
+
+-----------------------------------------------------------------------------------------------
+
+I cleaned up a TON of code and it looks a lot better!

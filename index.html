@@ -7,27 +7,25 @@
         <link rel="stylesheet" href="style-page.css">
     </head>
     <body>
-        <main>
+        <main>  
+            
             <div class="parent-background">
-                <img src="start-match.png" usemap="#power-button-map" class="image-div-placement">
-                <map name="power-button-map">
-                    <area coords="925,230,959,266" shape="rect" id="power-button">
-                </map>
-                
-                <div class="rock">
-                </div>
-                <div class="paper">
-                </div>
-                <div class="scissors">
-                </div>
             </div>
 
-        </main>
-        <footer>
-        </footer>
-        <script type="text/javascript" src="test-power-button.js"></script>
-        <!-- <script type="text/javascript" src="rock-paper-scissors.js"></script> -->
+            <div class="none">
+                <!-- this one goes over top of parent background for the animations-->
+            </div>
 
-        <!-- REMEMBER TO FIND THE WIN ROUNDS PICTURES. They are all skewed -->
+            <!-- this gets added after starting game -->
+            <!--<img src="comfortable-background-image.png" class="comfortable-background">-->
+
+            <img src="start-match.png" usemap="#power-button-map" class="comfortable-background-image">
+            <map name="power-button-map">
+                <area coords="925,230,959,266" shape="rect" id="power-button">
+            </map>
+
+        </main>
+
+        <script type="text/javascript" src="test-power-button.js"></script>
     </body>
 </html>
