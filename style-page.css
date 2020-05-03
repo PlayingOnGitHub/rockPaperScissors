@@ -68,7 +68,7 @@
         height: 669px;
         background-color: black;
         z-index: 10;
-        
+
         animation-name: place-animation-background-over-parent-background;
         animation-duration: 2s;
         animation-fill-mode: forwards;
@@ -401,6 +401,16 @@ main {
     margin-left: 150px;
     width: 1330px;
     height: 700px;
+}
+
+#power-button {
+    position: absolute;
+    width: 40px;
+    height: 41px;
+    z-index: 200;
+    margin-left: 529px;
+    margin-top: -62px;
+    border-radius: 50%;
 }
 
 .rock {

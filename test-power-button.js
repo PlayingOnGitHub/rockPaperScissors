@@ -212,11 +212,9 @@ function scaleImagesWhenUserHovers() {
 
 function cleanUpStartingContent() {
     let comfortableBackgroundImage = document.querySelector(".comfortable-background-image");
-    comfortableBackgroundImage.removeAttribute("usemap");
     comfortableBackgroundImage.src = "comfortable-background-image.png";
-    let powerButtonMap = document.querySelector("map");
-        powerButtonMap.removeChild(powerButtonMap.firstElementChild);
-        powerButtonMap.remove();
+    let powerButton = document.getElementById("power-button");
+        powerButton.remove();
 }
 
 function createRockPaperScissorsImages() {
