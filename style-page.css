@@ -28,12 +28,12 @@
 
     z-index: 11;
     animation-name: move-computer-selection-across-screen; /* add another animation to it too??? */
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
 
-@keyframes move-rock-across-screen {
+@keyframes move-player-selection-across-screen {
     
     100% {
         top: 150px;
@@ -42,11 +42,11 @@
 
 }
 
-#move-rock {
+#move-player-selection {
     /* this is where my image will end up? */
     z-index: 11;
-    animation-name: move-rock-across-screen; /* add another animation to it too??? */
-    animation-duration: 4s;
+    animation-name: move-player-selection-across-screen; /* add another animation to it too??? */
+    animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
@@ -62,18 +62,17 @@
 }
 
 #add-animation-background {
-    /* position is absolute but also relative to parent background. Same for the classes: comfortable-background, rock, paper, scissors. */
-    margin-left: 60px;
-    position:absolute;
-    width:1270px;
-    height:650px;
-    background-color:black;
-    z-index:10;
+        margin-left: 150px;
+        position: absolute;
+        width: 1289px;
+        height: 669px;
+        background-color: black;
+        z-index: 10;
         
-        animation-name: place-animation-background-over-parent-background; /* add another animation to it too??? */
-        animation-duration: 4s;
+        animation-name: place-animation-background-over-parent-background;
+        animation-duration: 2s;
         animation-fill-mode: forwards;
-        animation-timing-function: linear
+        animation-timing-function: linear;
 }
 
 @keyframes fade-the-element {
@@ -111,14 +110,271 @@
 #fade-element {
 
     animation-name: fade-the-element; /* add another animation to it too??? */
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
 
-.player-selection-image-properties {
+/*@keyframes shimmer-left-to-right {
+    0% {
+        opacity: 0.6;
+    }
+    
+    50% {
+        opacity: 0.8;
+        left: 380px;
+    }
+
+    100% {
+        opacity: 0.6;
+        left: 591px;
+    }
 }
-.computer-selection-image-properties {
+
+#shimmer-left {
+
+    animation-name: shimmer-left-to-right;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-bottom: 390px solid;
+    border-right: 2px solid;
+    border-left: 0px solid;
+    z-index: 50;
+    position:absolute;
+    left: 255px;
+    top: 105px;
+    color: hsl(47, 43%, 54%);
+    opacity:  0.6;
+}
+
+@keyframes shimmer-top-to-bottom {
+    0% {
+        opacity: 0.6;
+    }
+    
+    50% {
+        opacity: 0.8;
+        top: 280px;
+    }
+
+    100% {
+        opacity: 0.6;
+        top: 493px;
+    }
+}
+
+#shimmer-top {
+
+    animation-name: shimmer-top-to-bottom;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-top: 0px solid;
+    border-bottom: 2px solid;
+    border-right: solid;
+    border-left: 337px solid;
+    z-index: 50;
+    position:absolute;
+    left: 255px;
+    top: 105px;
+    color: hsl(47, 43%, 54%);
+    opacity:  0.6;
+}
+
+@keyframes shimmer-right-to-left {
+    0% {
+        opacity: 0.6;
+    }
+    
+    50% {
+        opacity: 0.8;
+        left: 360px;
+    }
+
+    100% {
+        opacity: 0.6;
+        left: 255px;
+    }
+}
+
+#shimmer-right {
+
+    animation-name: shimmer-right-to-left;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-top: solid;
+    border-bottom: 387px solid;
+    border-right: 2px solid;
+    border-left: solid;
+    z-index: 50;
+    position:absolute;
+    left: 591px;
+    top: 105px;
+    color: hsl(47, 43%, 54%);
+    opacity:  0.6;
+}
+
+@keyframes shimmer-bottom-to-top {
+    0% {
+        opacity: 0.6;
+    }
+    
+    50% {
+        opacity: 0.8;
+        top: 280px;
+    }
+
+    100% {
+        opacity: 0.6;
+        top: 105px;
+    }
+}
+
+#shimmer-bottom {
+
+    animation-name: shimmer-bottom-to-top;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-top: 0px solid;
+    border-bottom: 2px solid;
+    border-right: solid;
+    border-left: 334px solid;
+    z-index: 50;
+    position:absolute;
+    left: 256px;
+    top: 493px;
+    color: hsl(47, 43%, 54%);
+    opacity:  0.6;
+}*/
+
+@keyframes highlight-changing-colors {
+    0% {
+        color: hsl(47, 90%, 40%);
+    }
+    50% {
+        color: hsl(47, 43%, 54%);
+    }
+    100% {
+        color: hsl(47, 90%, 40%);
+    }
+}
+
+#highlight-player-selected-image {
+
+    animation-name: highlight-changing-colors;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-bottom: 389px solid;
+    border-right: solid;
+    border-left: 339px solid;
+    z-index: 50;
+    position:absolute;
+    left: 255px;
+    top: 105px;
+    color: hsl(47, 90%, 40%);
+    opacity:  0.5;
+}
+
+@keyframes display-player-won-round-text {
+    0% {
+        font-size: 0px;
+    }
+
+    100% {
+        font-size: 69px;
+    }
+}
+
+#you-win-the-round-text {
+    animation-name: display-player-won-round-text;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    color: yellow;
+    font-size: 0px;
+}
+
+@keyframes add-trophy-to-parent-background {
+    0% {
+        width: 0px;
+        height: 0px;
+    }
+
+    100% {
+        width: 600px;
+        height: 400px;
+    }
+}
+
+#add-trophy {
+    animation-name: add-trophy-to-parent-background;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    position: absolute;
+    top: 143px;
+    left: 398px;
+    z-index: 100;
+}
+
+#highlight-computer-selected-image {
+
+    animation-name: highlight-changing-colors;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    width:0;
+    height: 0;
+    border-bottom: 389px solid;
+    border-right: solid;
+    border-left: 338px solid;
+    z-index: 50;
+    position:absolute;
+    left: 800px;
+    top: 105px;
+    color: hsl(47, 90%, 40%);
+    opacity:  0.5;
+}
+
+#you-win-the-round-text-container {
+    position:absolute;
+    width: 600px;
+    height: 141px;
+    /* background-color: #050606f7; */
+    top: 504px;
+    left: 384px;
+    z-index:90;
+    /* background-color: #010100; */
+    opacity: 0.87;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
 }
 
 /****************************************/
@@ -134,50 +390,48 @@ main {
 }
 
 .parent-background {
-    /* makes elements inside relative to this */
     position: relative;
-    margin-left: 60px;
-    min-width:1330px;
-    min-height:700px;
+    margin-left: 239px;
+    min-width: 1330px;
+    min-height: 700px;
 }
 
 .comfortable-background-image {
-    position:absolute;
-    margin-left: 60px;
-    width:1330px;
-    height:700px;
+    position: absolute;
+    margin-left: 150px;
+    width: 1330px;
+    height: 700px;
 }
 
 .rock {
-    position:absolute;
-    top:50px;
-    left:90px;
-
+    position: absolute;
+    top: 50px;
+    left: 91px;
     cursor: pointer;
-    width: 259px;
-    height: 300px;
-    z-index:2;
 
+    width: 262px;
+    height: 300px;
+    z-index: 2;
 }
 
 .paper {
-    position:absolute;
-    top:50px;
-    left:350px;
-
+    position: absolute;
+    top: 50px;
+    left: 354px;
     cursor: pointer;
-    width: 268px;
+
+    width: 262px;
     height: 300px;
     z-index: 2;
 }
 
 .scissors {
-    position:absolute;
-    top:50px;
-    left:620px;
-
+    position: absolute;
+    top: 50px;
+    left: 617px;
     cursor: pointer;
-    width: 259px;
+
+    width: 262px;
     height: 300px;
     z-index: 2;
 }

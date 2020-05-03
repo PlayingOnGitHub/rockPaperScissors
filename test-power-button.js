@@ -66,51 +66,69 @@ function computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip() {
     
 }
 
+function blinkPlayerWinningElement() {
+    let parentBackground = document.querySelector(".parent-background");
+    let imageHighlight = parentBackground.appendChild(document.createElement("img"));
+        imageHighlight.id = "highlight-player-selected-image";
+    let youWinTheRoundTextContainer = parentBackground.appendChild(document.createElement("div"));
+        youWinTheRoundTextContainer.id = "you-win-the-round-text-container";
+    let youWinTheRoundText = youWinTheRoundTextContainer.appendChild(document.createElement("p"));
+        youWinTheRoundText.id = "you-win-the-round-text";
+        youWinTheRoundText.textContent = "You won the round!";
+    let addTrophy = parentBackground.appendChild(document.createElement("img"));
+        addTrophy.src = "player-wins-a-trophy.png";
+        addTrophy.id = "add-trophy";
+
+}
+
+function blinkComputerWinningElement() {
+    let parentBackground = document.querySelector(".parent-background");
+    let imageHighlight = parentBackground.appendChild(document.createElement("img"));
+        imageHighlight.id = "highlight-computer-selected-image";
+}
+
+function blinkTieElement() {
+
+}
+
+function moveAnimationElements( playerSelectedClassName, computerSelectedClassName, winner) {
+    let playerSelectedItem = document.querySelector("."+playerSelectedClassName);
+        playerSelectedItem.id = "move-player-selection";
+        playerSelectedItem.style.zIndex = "11";
+
+    let computerSelectedItem = document.getElementById("none-yet");
+        computerSelectedItem.id = "move-computer-selection";
+
+        if (winner == "player") {
+            playerSelectedItem.addEventListener("animationend", blinkPlayerWinningElement, false);
+        }
+        else if (winner == "computer") {
+            computerSelectedItem.addEventListener("animationend", blinkComputerWinningElement, false);
+        }
+        else {
+            playerSelectedItem.addEventListener("animationend", blinkTieElement, false);
+        }
+
+}
+
 function createAnimationBackgroundAndAnimationElements(playerSelectedClass, computerSelectedClass) {
     
     removeEventListeners(); /* cleans up so zIndex will work and so the image will stay up there */
     let animationBackground = document.querySelector(".none");
         animationBackground.id = "add-animation-background";
     let computerSelectedItem = document.createElement("img");
+        computerSelectedItem.id = "none-yet"
     let parentBackground = document.querySelector(".parent-background");
         parentBackground.appendChild(computerSelectedItem);
-        computerSelectedItem.id = "move-computer-selection";
     let computerSelectedItemSrc = computerSelectedClass + "-with-border.png";
         computerSelectedItem.src = computerSelectedItemSrc;
-    /*let backgroundImage = document.querySelector(".comfortable-background-image");
-        backgroundImage.id = "fade-element";
-    if (playerSelectedClass != "rock") {
-        let rock = document.querySelector(".rock");
-            rock.id = "fade-element";
-    }
 
-    if (playerSelectedClass != "paper") {
-        let paper = document.querySelector(".paper");
-            paper.id = "fade-element";
-    }
-
-    if (playerSelectedClass != "scissors") {
-        let scissors = document.querySelector(".scissors");
-            scissors.id = "fade-element";
-    }*/
-
-    let playerSelection = document.querySelector("."+playerSelectedClass);
-        playerSelection.style.zIndex = "11";
 }
 
 function animateRoundWinner( playerSelectedClassName, computerSelectedClassName, winner ) {
     
     createAnimationBackgroundAndAnimationElements(playerSelectedClassName, computerSelectedClassName);
-
-    let playerSelectedItem = document.querySelector("."+playerSelectedClassName);
-        playerSelectedItem.id = "move-rock";
-        
-    /*let playerSelection = document.querySelector("."+playerSelectionClassName);
-    let computerSelection = document.querySelector("."+computerSelectionClassName);
-    computerSelection.id = "move-computer-selection";
-    playerSelection.id = "move-player-selection";
-
-    playerSelection.addEventListener("animationend", computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip, false);*/
+    moveAnimationElements(playerSelectedClassName, computerSelectedClassName, winner);
     
 
 }
