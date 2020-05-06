@@ -17,18 +17,8 @@
 
 #move-computer-selection {
 
-    position:absolute;
-    top:50px;
-    right: 0px;
-
-    cursor: pointer;
-    width: 259px;
-    height: 300px;
-    transform: scale(1.3);
-
-    z-index: 11;
     animation-name: move-computer-selection-across-screen; /* add another animation to it too??? */
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
@@ -46,7 +36,7 @@
     /* this is where my image will end up? */
     z-index: 11;
     animation-name: move-player-selection-across-screen; /* add another animation to it too??? */
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
@@ -62,205 +52,80 @@
 }
 
 #add-animation-background {
-        margin-left: 150px;
-        position: absolute;
-        width: 1289px;
-        height: 669px;
-        background-color: black;
-        z-index: 10;
 
-        animation-name: place-animation-background-over-parent-background;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-        animation-timing-function: linear;
+    animation-name: place-animation-background-over-parent-background;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+        
+    margin-left: 150px;
+    position: absolute;
+    width: 1289px;
+    height: 669px;
+    background-color: black;
+    z-index: 10;
 }
 
-@keyframes fade-the-element {
+@keyframes delete-animation-background {
     0% {
-        opacity: 1.0
+        opacity: 0.90;
     }
-    10% {
-        opacity: 0.9;
-    }
-    20% {
-        opacity: 0.8;
-    }
-    30% {
-        opacity: 0.7;
-    }
-    40% {
-        opacity: 0.6;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    60% {
-        opacity: 0.4;
-    }
-    70% {
-    }
-    80% {
-    }
-    90% {
-    }
+
     100% {
+        opacity: 0.0;
     }
 }
 
-#fade-element {
+#fade-out-animation-background {
 
-    animation-name: fade-the-element; /* add another animation to it too??? */
+    animation-name: delete-animation-background;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    margin-left: 150px;
+    position: absolute;
+    width: 1289px;
+    height: 669px;
+    background-color: black;
+    z-index: 10;
+
+}
+
+@keyframes fade-out-element {
+
+    0% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 0.0;
+    }
+
+}
+
+#fade-out-computer-selection {
+
+    top: 150px;
+    right: 230px;
+    opacity: 1.0;
+
+    animation-name: fade-out-element;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+}
+
+#fade-out-trophy {
+    width: 600px;
+    height: 400px;
+
+    animation-name: fade-out-element;
     animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
-
-/*@keyframes shimmer-left-to-right {
-    0% {
-        opacity: 0.6;
-    }
-    
-    50% {
-        opacity: 0.8;
-        left: 380px;
-    }
-
-    100% {
-        opacity: 0.6;
-        left: 591px;
-    }
-}
-
-#shimmer-left {
-
-    animation-name: shimmer-left-to-right;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    width:0;
-    height: 0;
-    border-bottom: 390px solid;
-    border-right: 2px solid;
-    border-left: 0px solid;
-    z-index: 50;
-    position:absolute;
-    left: 255px;
-    top: 105px;
-    color: hsl(47, 43%, 54%);
-    opacity:  0.6;
-}
-
-@keyframes shimmer-top-to-bottom {
-    0% {
-        opacity: 0.6;
-    }
-    
-    50% {
-        opacity: 0.8;
-        top: 280px;
-    }
-
-    100% {
-        opacity: 0.6;
-        top: 493px;
-    }
-}
-
-#shimmer-top {
-
-    animation-name: shimmer-top-to-bottom;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    width:0;
-    height: 0;
-    border-top: 0px solid;
-    border-bottom: 2px solid;
-    border-right: solid;
-    border-left: 337px solid;
-    z-index: 50;
-    position:absolute;
-    left: 255px;
-    top: 105px;
-    color: hsl(47, 43%, 54%);
-    opacity:  0.6;
-}
-
-@keyframes shimmer-right-to-left {
-    0% {
-        opacity: 0.6;
-    }
-    
-    50% {
-        opacity: 0.8;
-        left: 360px;
-    }
-
-    100% {
-        opacity: 0.6;
-        left: 255px;
-    }
-}
-
-#shimmer-right {
-
-    animation-name: shimmer-right-to-left;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    width:0;
-    height: 0;
-    border-top: solid;
-    border-bottom: 387px solid;
-    border-right: 2px solid;
-    border-left: solid;
-    z-index: 50;
-    position:absolute;
-    left: 591px;
-    top: 105px;
-    color: hsl(47, 43%, 54%);
-    opacity:  0.6;
-}
-
-@keyframes shimmer-bottom-to-top {
-    0% {
-        opacity: 0.6;
-    }
-    
-    50% {
-        opacity: 0.8;
-        top: 280px;
-    }
-
-    100% {
-        opacity: 0.6;
-        top: 105px;
-    }
-}
-
-#shimmer-bottom {
-
-    animation-name: shimmer-bottom-to-top;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    width:0;
-    height: 0;
-    border-top: 0px solid;
-    border-bottom: 2px solid;
-    border-right: solid;
-    border-left: 334px solid;
-    z-index: 50;
-    position:absolute;
-    left: 256px;
-    top: 493px;
-    color: hsl(47, 43%, 54%);
-    opacity:  0.6;
-}*/
 
 @keyframes highlight-changing-colors {
     0% {
@@ -295,50 +160,6 @@
     opacity:  0.5;
 }
 
-@keyframes display-player-won-round-text {
-    0% {
-        font-size: 0px;
-    }
-
-    100% {
-        font-size: 69px;
-    }
-}
-
-#you-win-the-round-text {
-    animation-name: display-player-won-round-text;
-    animation-duration: 0.2s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    color: yellow;
-    font-size: 0px;
-}
-
-@keyframes add-trophy-to-parent-background {
-    0% {
-        width: 0px;
-        height: 0px;
-    }
-
-    100% {
-        width: 600px;
-        height: 400px;
-    }
-}
-
-#add-trophy {
-    animation-name: add-trophy-to-parent-background;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-
-    position: absolute;
-    top: 143px;
-    left: 398px;
-    z-index: 100;
-}
-
 #highlight-computer-selected-image {
 
     animation-name: highlight-changing-colors;
@@ -360,21 +181,146 @@
     opacity:  0.5;
 }
 
-#you-win-the-round-text-container {
+@keyframes display-match-notification {
+    0% {
+        font-size: 0px;
+    }
+
+    100% {
+        font-size: 69px;
+    }
+}
+
+#fade-in-match-notification-text {
+    animation-name: display-match-notification;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+}
+
+@keyframes delete-notification {
+    0% {
+        font-size: 69px;
+    }
+
+    100% {
+        font-size: 0px
+    }
+}
+
+#fade-out-match-notification {
+    animation-name: delete-notification;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes add-trophy-to-parent-background {
+    0% {
+        width: 0px;
+        height: 0px;
+    }
+
+    100% {
+        width: 600px;
+        height: 400px;
+    }
+}
+
+#add-trophy {
+    animation-name: add-trophy-to-parent-background;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes create-a-delay {
+    0% {
+    }
+    100% {
+    }
+}
+
+#create-delay {
+    animation-name: create-a-delay;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: 0s;
+}
+
+@keyframes put-away-the-scissors {
+    0% {
+        top: 150px;
+        left: 295px;
+    }
+    100% {
+        top: 50px;
+        left: 617px;
+        transform:scale(1.0);
+    }
+}
+
+@keyframes put-away-the-rock {
+    0% {
+        top: 150px;
+        left: 295px;
+    }
+    100% {
+        top: 50px;
+        left: 91px;
+        transform:scale(1.0);
+    }
+}
+
+@keyframes put-away-the-paper {
+    0% {
+        top: 150px;
+        left: 295px;
+    }
+    100% {
+        top: 50px;
+        left: 354px;
+        transform:scale(1.0);
+    }
+}
+
+#put-away-scissors {
+    animation-name: put-away-the-scissors;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+#put-away-rock {
+    animation-name: put-away-the-rock;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+#put-away-paper {
+    animation-name: put-away-the-paper;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.match-notification-container {
+    color: yellow;
+    font-size: 69px;
     position:absolute;
     width: 600px;
     height: 141px;
-    /* background-color: #050606f7; */
     top: 504px;
     left: 384px;
     z-index:90;
-    /* background-color: #010100; */
     opacity: 0.87;
     text-align: center;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 /****************************************/
@@ -444,6 +390,26 @@ main {
     width: 262px;
     height: 300px;
     z-index: 2;
+}
+
+.trophy {
+    position: absolute;
+    top: 143px;
+    left: 398px;
+    z-index: 100;
+}
+
+.computer-selection {
+    position:absolute;
+    top:50px;
+    right: 0px;
+
+    cursor: pointer;
+    width: 259px;
+    height: 300px;
+    transform: scale(1.3);
+
+    z-index: 11;
 }
 
 /*.full-tv-width {

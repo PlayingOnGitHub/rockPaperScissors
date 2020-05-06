@@ -56,80 +56,180 @@ function removeEventListeners() {
     rock.removeEventListener("click", playRound, true);
     paper.removeEventListener("click", playRound, true);
     scissors.removeEventListener("click", playRound, true);
-}
 
-function endMatch() {
 
 }
 
-function computerChoiceComesIntoFocusButIsHiddenFromViewAndWillFlip() {
-    
+function endGame() {
+
 }
 
-function blinkPlayerWinningElement() {
+function recreatePlayerSelectedElement() {
+    let playerSelectedItem = document.querySelector("."+this.className);
+        playerSelectedItem.removeEventListener("animationend", recreatePlayerSelectedElement, true);
+        playerSelectedItem.removeAttribute("id");
+        playerSelectedItem.removeAttribute("style");
+        playerSelectedItem.src = this.className + ".png";
+}
+
+function cleanUpAnimationBackgroundAndCreateListenersAgain() {
+    let animationBackground = document.getElementById("fade-out-animation-background");
+        animationBackground.removeEventListener("animationend", cleanUpAnimationBackgroundAndCreateListenersAgain, true);
+        animationBackground.removeAttribute("id");
+        scaleImagesWhenUserHovers();
+}
+
+function startANewRound() {
+    /* highlightWinner is how I know who the winner is */
+
+    let highlightedWinner = document.getElementsByClassName("highlight-image")[0];
+    if (highlightedWinner.id == "highlight-player-selected-image") {
+        let trophy = document.querySelector(".trophy");
+            trophy.id = "fade-out-trophy";
+            trophy.remove();
+    }
+
+    highlightedWinner.remove();
+
+    let matchNotificationText = document.getElementById("fade-in-match-notification-text");
+        matchNotificationText.id = "fade-out-match-notification";
+        matchNotificationText.addEventListener("animationend", () => {matchNotificationText.parentElement.remove()}, true);
+
+    let playerSelectedItem = document.getElementById("move-player-selection");
+        playerSelectedItem.id = "put-away-" + playerSelectedItem.className;
+        playerSelectedItem.addEventListener("animationend", recreatePlayerSelectedElement, true);
+
+    let computerSelectedItem = document.getElementById("move-computer-selection");
+        computerSelectedItem.id = "fade-out-computer-selection";
+        computerSelectedItem.addEventListener("animationend", () => computerSelectedItem.remove(), true);
+
+    let animationBackground = document.getElementById("add-animation-background");
+        animationBackground.id = "fade-out-animation-background";
+        animationBackground.addEventListener("animationend", cleanUpAnimationBackgroundAndCreateListenersAgain, true);
+
+        let createADelay = document.getElementById("create-delay");
+            createADelay.remove();
+}
+
+function highlightWinner(playerOrComputer) {
+    let imageHighlight = document.querySelector(".highlight-image");
+        imageHighlight.id = "highlight-"+playerOrComputer+"-selected-image";
+}
+
+function addTrophy() {
+    let addATrophy = document.querySelector(".trophy");
+        addATrophy.src = "player-wins-a-trophy.png";
+        addATrophy.id = "add-trophy";
+}
+
+function addMatchNotification( wonLostOrTied ) {
+    let matchNotificationText = document.querySelector(".match-notification-text");
+        matchNotificationText.textContent = "You " + wonLostOrTied + " the round!";
+        matchNotificationText.id = "fade-in-match-notification-text";
+
+}
+
+function createDelay( numericTimeValue ) {
     let parentBackground = document.querySelector(".parent-background");
-    let imageHighlight = parentBackground.appendChild(document.createElement("img"));
-        imageHighlight.id = "highlight-player-selected-image";
-    let youWinTheRoundTextContainer = parentBackground.appendChild(document.createElement("div"));
-        youWinTheRoundTextContainer.id = "you-win-the-round-text-container";
-    let youWinTheRoundText = youWinTheRoundTextContainer.appendChild(document.createElement("p"));
-        youWinTheRoundText.id = "you-win-the-round-text";
-        youWinTheRoundText.textContent = "You won the round!";
-    let addTrophy = parentBackground.appendChild(document.createElement("img"));
-        addTrophy.src = "player-wins-a-trophy.png";
-        addTrophy.id = "add-trophy";
+    let createADelay = parentBackground.appendChild( document.createElement("div") );
 
+        createADelay.style.animationDuration = "" + numericTimeValue + "s";
+        createADelay.id = "create-delay";
+        createADelay.addEventListener("animationend", startANewRound, true)
 }
 
-function blinkComputerWinningElement() {
-    let parentBackground = document.querySelector(".parent-background");
-    let imageHighlight = parentBackground.appendChild(document.createElement("img"));
-        imageHighlight.id = "highlight-computer-selected-image";
+function playerWins() {
+    let computerSelectedItem = document.getElementById("move-computer-selection");
+        computerSelectedItem.removeEventListener("animationend", playerWins, true);
+    highlightWinner("player");
+    addTrophy();
+    addMatchNotification("won");
+    createDelay(2);
+}
+function computerWins() {
+    let computerSelectedItem = document.getElementById("move-computer-selection");
+        computerSelectedItem.removeEventListener("animationend", computerWins, true);
+    highlightWinner("computer");
+    addMatchNotification("lost");
+    createDelay(2);
+}
+function itsATie() {
+    let computerSelectedItem = document.getElementById("move-computer-selection");
+        computerSelectedItem.removeEventListener("animationend", itsATie, true);
+    addMatchNotification("tied");
+    createDelay(2);
 }
 
-function blinkTieElement() {
 
-}
-
-function moveAnimationElements( playerSelectedClassName, computerSelectedClassName, winner) {
+function runAnimations( playerSelectedClassName, computerSelectedClassName, winner) {
     let playerSelectedItem = document.querySelector("."+playerSelectedClassName);
         playerSelectedItem.id = "move-player-selection";
         playerSelectedItem.style.zIndex = "11";
 
-    let computerSelectedItem = document.getElementById("none-yet");
+    let computerSelectedItem = document.getElementById("computers-choice");
         computerSelectedItem.id = "move-computer-selection";
 
-        if (winner == "player") {
-            playerSelectedItem.addEventListener("animationend", blinkPlayerWinningElement, false);
-        }
-        else if (winner == "computer") {
-            computerSelectedItem.addEventListener("animationend", blinkComputerWinningElement, false);
-        }
-        else {
-            playerSelectedItem.addEventListener("animationend", blinkTieElement, false);
-        }
+    if (winner == "player") {
+        computerSelectedItem.addEventListener( "animationend", playerWins, true);
+    }
+    else if (winner == "computer") {
+        computerSelectedItem.addEventListener( "animationend", computerWins, true);
+    }
+    else {
+        computerSelectedItem.addEventListener( "animationend", itsATie, true);
+    }
 
 }
 
-function createAnimationBackgroundAndAnimationElements(playerSelectedClass, computerSelectedClass) {
+function createHighlightWinnerElement() {
+    let parentBackground = document.querySelector(".parent-background");
+    let imageHighlight = parentBackground.appendChild(document.createElement("img"));
+        imageHighlight.className = "highlight-image";
+}
+
+function createTrophyElement() {
+    let parentBackground = document.querySelector(".parent-background");
+    let addATrophy = parentBackground.appendChild(document.createElement("img"));
+        addATrophy.className = "trophy";
+}
+
+function createMatchNotificationElement() {
+    let parentBackground = document.querySelector(".parent-background");
+    let matchNotificationContainer = parentBackground.appendChild(document.createElement("div"));
+        matchNotificationContainer.className = "match-notification-container";
+    let matchNotificationText = matchNotificationContainer.appendChild(document.createElement("p"));
+        matchNotificationText.className = "match-notification-text"
+}
+
+function createComputerElement( computerSelectedClassName ) {
+    let parentBackground = document.querySelector(".parent-background");
+    let computerSelectedItemSrc = computerSelectedClassName + "-with-border.png";
+    let computerSelectedItem = document.createElement("img");
+        computerSelectedItem.className = "computer-selection";
+        computerSelectedItem.id = "computers-choice";
+        computerSelectedItem.src = computerSelectedItemSrc;
     
-    removeEventListeners(); /* cleans up so zIndex will work and so the image will stay up there */
+        parentBackground.appendChild( computerSelectedItem );
+}
+
+function createAnimationElements( computerSelectedClassName ) {
+    createComputerElement( computerSelectedClassName );
+    createMatchNotificationElement();
+    createTrophyElement();
+    createHighlightWinnerElement();
+}
+
+function createAnimationBackground() {
     let animationBackground = document.querySelector(".none");
         animationBackground.id = "add-animation-background";
-    let computerSelectedItem = document.createElement("img");
-        computerSelectedItem.id = "none-yet"
-    let parentBackground = document.querySelector(".parent-background");
-        parentBackground.appendChild(computerSelectedItem);
-    let computerSelectedItemSrc = computerSelectedClass + "-with-border.png";
-        computerSelectedItem.src = computerSelectedItemSrc;
-
 }
 
 function animateRoundWinner( playerSelectedClassName, computerSelectedClassName, winner ) {
     
-    createAnimationBackgroundAndAnimationElements(playerSelectedClassName, computerSelectedClassName);
-    moveAnimationElements(playerSelectedClassName, computerSelectedClassName, winner);
-    
+    removeEventListeners();
+    createAnimationBackground();
+    createAnimationElements(computerSelectedClassName);
+    runAnimations( playerSelectedClassName, computerSelectedClassName, winner );
 
 }
 
@@ -148,7 +248,7 @@ function playRound() {
     }
 
     else if ( playerSelection == computerSelection ) {
-            animateRoundWinner(playerSelection, computerSelection, "nowinner");
+            animateRoundWinner(playerSelection, computerSelection, "tied");
     }
 
     else {
@@ -158,7 +258,7 @@ function playRound() {
     }
 
     if ( rounds >= 6 || playerPoints > 2 || computerPoints > 2 ) {
-        endMatch();
+        endGame();
     }
 
 }
