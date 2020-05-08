@@ -13,22 +13,4 @@ I've added event listeners that check for hover events. These events will scale 
 I've also added event listeners that check for click events. These events run animations and cause the player to make progress in the game.
 --------------------------------------------------------------------------------------------------------------------------------------
 
-I need to clean up the following css classes noted.. and then sweep the file because there are some styles left over from other tests.
-
-class = player-selection-image-properties
-class = computer-selection-image-properties
-
-class = computer-selection-div-properties [add a color to observe the spacing]
-class = player-selection-div-properties [is currently green for placement purposes
-class = animation-background [currently is orange]
-
-id = #move-computer-selection [runs animation]
-id = #move-player-selection [runs animation]
-
-
-----------------------------------------------------------------------------------------------
-I'm really excited to add this code below to my css file. I'll make the code interactive with Javascript. I plan to make the parent background fade to a lighter color and have a new display fade into view in a dark black color. I will keep some opacity for the previous actions. This will create the illusion that the back of the page is still somewhat in focus. The dark black colored backgroundw will then drop away to allow the user to play another round. I plan to snag the player selected image and placing that image into the background on the left side. Computer selected choice will fit flexibly inside the div to the right side. Both images will be separated by some margin or padding.
-
------------------------------------------------------------------------------------------------
-
-I cleaned up a TON of code and it looks a lot better!
+I decided to conclude my project. I learned a little bit more about how to animate with CSS and JavaScript. I also learned the importance of creating useful functions. I created a very simple game that allows a person to play Rock Paper Scissors against the computer.

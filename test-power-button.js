@@ -62,6 +62,23 @@ function removeEventListeners() {
 
 function endGame() {
 
+    let parentBackgroundImage = document.querySelector(".comfortable-background-image");
+    if ( playerPoints > computerPoints ) {
+        parentBackgroundImage.src = "you-win.png";
+    }
+    else {
+        parentBackgroundImage.src = "you-lose.png";
+    }
+
+    let rock = document.querySelector(".rock");
+        rock.remove();
+    let paper = document.querySelector(".paper");
+        paper.remove();
+    let scissors = document.querySelector(".scissors");
+        scissors.remove();
+
+
+
 }
 
 function recreatePlayerSelectedElement() {
@@ -76,17 +93,27 @@ function cleanUpAnimationBackgroundAndCreateListenersAgain() {
     let animationBackground = document.getElementById("fade-out-animation-background");
         animationBackground.removeEventListener("animationend", cleanUpAnimationBackgroundAndCreateListenersAgain, true);
         animationBackground.removeAttribute("id");
-        scaleImagesWhenUserHovers();
+
+        if ( rounds >= 6 || playerPoints > 2 || computerPoints > 2 ) {
+            endGame();
+        }
+        else {
+            scaleImagesWhenUserHovers();
+        }
 }
 
 function startANewRound() {
     /* highlightWinner is how I know who the winner is */
 
     let highlightedWinner = document.getElementsByClassName("highlight-image")[0];
+    let trophy = document.querySelector(".trophy");
+
     if (highlightedWinner.id == "highlight-player-selected-image") {
-        let trophy = document.querySelector(".trophy");
             trophy.id = "fade-out-trophy";
-            trophy.remove();
+            trophy.addEventListener( "animationend", () => trophy.remove(), true );
+    }
+    else {
+        trophy.remove();
     }
 
     highlightedWinner.remove();
@@ -144,20 +171,20 @@ function playerWins() {
     highlightWinner("player");
     addTrophy();
     addMatchNotification("won");
-    createDelay(2);
+    createDelay(3.5);
 }
 function computerWins() {
     let computerSelectedItem = document.getElementById("move-computer-selection");
         computerSelectedItem.removeEventListener("animationend", computerWins, true);
     highlightWinner("computer");
     addMatchNotification("lost");
-    createDelay(2);
+    createDelay(3.0);
 }
 function itsATie() {
     let computerSelectedItem = document.getElementById("move-computer-selection");
         computerSelectedItem.removeEventListener("animationend", itsATie, true);
     addMatchNotification("tied");
-    createDelay(2);
+    createDelay(3.0);
 }
 
 
@@ -255,10 +282,6 @@ function playRound() {
             computerPoints++;
             animateRoundWinner(playerSelection, computerSelection, "computer");
             logRoundsAndPoints(playerPoints, computerPoints )
-    }
-
-    if ( rounds >= 6 || playerPoints > 2 || computerPoints > 2 ) {
-        endGame();
     }
 
 }

@@ -306,6 +306,22 @@
     animation-timing-function: linear;
 }
 
+@keyframes disolve-image {
+    /* could have background fade out and then add a new background over top of it with increasing opacity */
+    0% {
+
+    }
+    100% {
+    }
+}
+
+#disolve-into-end-match-background {
+    animation-name: disolve-image;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
 .match-notification-container {
     color: yellow;
     font-size: 69px;
